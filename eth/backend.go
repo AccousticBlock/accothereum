@@ -217,6 +217,7 @@ func CreateConsensusEngine(ctx *node.ServiceContext, config *ethash.Config, chai
 		return clique.New(chainConfig.Clique, db)
 	}
 	// Otherwise assume proof-of-work
+	log.Info("config", "config", config)
 	switch {
 	case config.PowMode == ethash.ModeFake:
 		log.Warn("Ethash used in fake mode")
@@ -237,6 +238,7 @@ func CreateConsensusEngine(ctx *node.ServiceContext, config *ethash.Config, chai
 			DatasetsOnDisk: config.DatasetsOnDisk,
 		})
 		engine.SetThreads(-1) // Disable CPU mining
+		log.Info("engine", "engine", engine)
 		return engine
 	}
 }
