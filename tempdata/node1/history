@@ -1,9 +1,0 @@
-admin
-miner.start()
-admin
-miner.setEtherbase('0xc2f9cfb0416e1d8762fc5fcef849affedfc4099f')
-miner.start()
-miner.stop()
-admin
-miner.start()
-miner.stop()
