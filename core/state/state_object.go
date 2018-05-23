@@ -24,6 +24,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/rlp"
 )
 
@@ -104,6 +105,8 @@ type Account struct {
 
 // newObject creates a state object.
 func newObject(db *StateDB, address common.Address, data Account) *stateObject {
+	log.Info("IN NEWOBJECT FUNCION", "Address", address)
+	log.Info("IN NEWOBJECT FUNCION", "Account", data)
 	if data.Balance == nil {
 		data.Balance = new(big.Int)
 	}

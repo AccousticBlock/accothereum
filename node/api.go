@@ -24,6 +24,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/log"
 	"github.com/ethereum/go-ethereum/metrics"
 	"github.com/ethereum/go-ethereum/p2p"
 	"github.com/ethereum/go-ethereum/p2p/discover"
@@ -45,6 +46,7 @@ func NewPrivateAdminAPI(node *Node) *PrivateAdminAPI {
 // AddPeer requests connecting to a remote node, and also maintaining the new
 // connection at all times, even reconnecting if it is lost.
 func (api *PrivateAdminAPI) AddPeer(url string) (bool, error) {
+	log.Info("IN AddPeer at api.go", "url", url)
 	// Make sure the server is running, fail otherwise
 	server := api.node.Server()
 	if server == nil {

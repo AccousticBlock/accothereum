@@ -44,8 +44,7 @@ import (
 	"github.com/ethereum/go-ethereum/swarm"
 	bzzapi "github.com/ethereum/go-ethereum/swarm/api"
 	swarmmetrics "github.com/ethereum/go-ethereum/swarm/metrics"
-
-	"gopkg.in/urfave/cli.v1"
+	cli "gopkg.in/urfave/cli.v1"
 )
 
 const clientIdentifier = "swarm"
@@ -542,6 +541,7 @@ func getPassPhrase(prompt string, i int, passwords []string) string {
 }
 
 func injectBootnodes(srv *p2p.Server, nodes []string) {
+	log.Info("IN injectBootnodes at main.go", "nodes", nodes)
 	for _, url := range nodes {
 		n, err := discover.ParseNode(url)
 		if err != nil {

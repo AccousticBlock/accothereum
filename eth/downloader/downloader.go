@@ -228,6 +228,7 @@ func New(mode SyncMode, stateDb ethdb.Database, mux *event.TypeMux, chain BlockC
 		},
 		trackStateReq: make(chan *stateReq),
 	}
+
 	go dl.qosTuner()
 	go dl.stateFetcher()
 	return dl
@@ -271,6 +272,7 @@ func (d *Downloader) Synchronising() bool {
 // RegisterPeer injects a new download peer into the set of block source to be
 // used for fetching hashes and blocks from.
 func (d *Downloader) RegisterPeer(id string, version int, peer Peer) error {
+	log.Info("IN RegisterPeerrrr", "id", id, "Peer", peer)
 	logger := log.New("peer", id)
 	logger.Trace("Registering sync peer")
 	if err := d.peers.Register(newPeerConnection(id, version, peer, logger)); err != nil {
@@ -314,6 +316,7 @@ func (d *Downloader) UnregisterPeer(id string) error {
 // Synchronise tries to sync up our local block chain with a remote peer, both
 // adding various sanity checks as well as wrapping it with various log entries.
 func (d *Downloader) Synchronise(id string, head common.Hash, td *big.Int, mode SyncMode) error {
+	log.Info("IN Synchronise", "id", id)
 	err := d.synchronise(id, head, td, mode)
 	switch err {
 	case nil:
@@ -340,6 +343,7 @@ func (d *Downloader) Synchronise(id string, head common.Hash, td *big.Int, mode 
 // it will use the best peer possible and synchronize if its TD is higher than our own. If any of the
 // checks fail an error will be returned. This method is synchronous
 func (d *Downloader) synchronise(id string, hash common.Hash, td *big.Int, mode SyncMode) error {
+	log.Info("IN synchronise", "id", id)
 	// Mock out the synchronisation if testing
 	if d.synchroniseMock != nil {
 		return d.synchroniseMock(id, hash)
