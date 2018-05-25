@@ -1,5 +1,7 @@
 .vscode/
 tempdata/
 build/
+build/bin/geth
 /build/*
 *.a
+*.sh
