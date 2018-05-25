@@ -164,6 +164,7 @@ func (p *Peer) Inbound() bool {
 }
 
 func newPeer(conn *conn, protocols []Protocol) *Peer {
+	log.Info("IN newPeer", "conn", conn, "protocols", protocols)
 	protomap := matchProtocols(protocols, conn.caps, conn)
 	p := &Peer{
 		rw:       conn,

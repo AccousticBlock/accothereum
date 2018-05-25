@@ -264,6 +264,7 @@ func generateDatasetItem(cache []uint32, index uint32, keccak512 hasher) []byte 
 // This method places the result into dest in machine byte order.
 func generateDataset(dest []uint32, epoch uint64, cache []uint32) {
 	// Print some debug logs to allow analysis on low end devices
+	log.Info("IN generateDataset", "dest", dest)
 	logger := log.New("epoch", epoch)
 
 	start := time.Now()

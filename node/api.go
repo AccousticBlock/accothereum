@@ -50,13 +50,16 @@ func (api *PrivateAdminAPI) AddPeer(url string) (bool, error) {
 	// Make sure the server is running, fail otherwise
 	server := api.node.Server()
 	if server == nil {
+		log.Info("IN AddPeer at api.go", "111111url", url)
 		return false, ErrNodeStopped
 	}
 	// Try to add the url as a static peer and return
 	node, err := discover.ParseNode(url)
 	if err != nil {
+		log.Info("IN AddPeer at api.go", "222222url", url)
 		return false, fmt.Errorf("invalid enode: %v", err)
 	}
+	log.Info("IN AddPeer at api.go", "node", node)
 	server.AddPeer(node)
 	return true, nil
 }
