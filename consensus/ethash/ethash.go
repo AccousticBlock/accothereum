@@ -289,7 +289,7 @@ func newDataset(epoch uint64) interface{} {
 
 // generate ensures that the dataset content is generated before use.
 func (d *dataset) generate(dir string, limit int, test bool) {
-	log.Info("IN generate", "dir", dir)
+	log.Info("IN generate at ethash.go", "dir", dir)
 	d.once.Do(func() {
 		csize := cacheSize(d.epoch*epochLength + 1)
 		dsize := datasetSize(d.epoch*epochLength + 1)
