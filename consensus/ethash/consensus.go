@@ -305,10 +305,13 @@ func CalcDifficulty(config *params.ChainConfig, time uint64, parent *types.Heade
 	next := new(big.Int).Add(parent.Number, big1)
 	switch {
 	case config.IsByzantium(next):
+		log.Info("IN CalcDifficulty IsByzantium at consensus/ethash/consensus.go")
 		return calcDifficultyByzantium(time, parent)
 	case config.IsHomestead(next):
+		log.Info("IN CalcDifficulty IsHomestead at consensus/ethash/consensus.go")
 		return calcDifficultyHomestead(time, parent)
 	default:
+		log.Info("IN CalcDifficulty default at consensus/ethash/consensus.go")
 		return calcDifficultyFrontier(time, parent)
 	}
 }
@@ -462,6 +465,7 @@ func calcDifficultyFrontier(time uint64, parent *types.Header) *big.Int {
 		diff.Add(diff, expDiff)
 		diff = math.BigMax(diff, params.MinimumDifficulty)
 	}
+	log.Info("calcDifficultyFrontier", "diff", diff)
 	return diff
 }
 
