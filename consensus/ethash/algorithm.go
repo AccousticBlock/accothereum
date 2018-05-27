@@ -126,7 +126,7 @@ func seedHash(block uint64) []byte {
 // set of 524288 64-byte values.
 // This method places the result into dest in machine byte order.
 func generateCache(dest []uint32, epoch uint64, seed []byte) {
-	log.Info("IN generateCache", "dest", dest, "epoch", epoch, "seed", seed)
+	log.Info("IN generateCache")
 	// Print some debug logs to allow analysis on low end devices
 	logger := log.New("epoch", epoch)
 
@@ -231,7 +231,7 @@ func fnvHash(mix []uint32, data []uint32) {
 // generateDatasetItem combines data from 256 pseudorandomly selected cache nodes,
 // and hashes that to compute a single dataset node.
 func generateDatasetItem(cache []uint32, index uint32, keccak512 hasher) []byte {
-	log.Info("IN generateDatasetItem", "keccak512", keccak512, "cache", cache, "index", index)
+	log.Info("IN generateDatasetItem")
 	// Calculate the number of theoretical rows (we use one buffer nonetheless)
 	rows := uint32(len(cache) / hashWords)
 
@@ -266,7 +266,7 @@ func generateDatasetItem(cache []uint32, index uint32, keccak512 hasher) []byte 
 // This method places the result into dest in machine byte order.
 func generateDataset(dest []uint32, epoch uint64, cache []uint32) {
 	// Print some debug logs to allow analysis on low end devices
-	log.Info("IN generateDataset", "dest", dest)
+	log.Info("IN generateDataset")
 	logger := log.New("epoch", epoch)
 
 	start := time.Now()

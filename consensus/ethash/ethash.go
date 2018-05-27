@@ -65,6 +65,7 @@ func isLittleEndian() bool {
 
 // memoryMap tries to memory map a file of uint32s for read only access.
 func memoryMap(path string) (*os.File, mmap.MMap, []uint32, error) {
+	log.Info("IN memoryMap  at ethash.go", "path", path)
 	file, err := os.OpenFile(path, os.O_RDONLY, 0644)
 	if err != nil {
 		return nil, nil, nil, err
@@ -108,6 +109,7 @@ func memoryMapFile(file *os.File, write bool) (mmap.MMap, []uint32, error) {
 // path requested.
 func memoryMapAndGenerate(path string, size uint64, generator func(buffer []uint32)) (*os.File, mmap.MMap, []uint32, error) {
 	// Ensure the data folder exists
+	log.Info("IN memoryMapAndGenerate 1 at ethash.go")
 	if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
 		return nil, nil, nil, err
 	}
@@ -327,6 +329,7 @@ func (d *dataset) generate(dir string, limit int, test bool) {
 		}
 		logger.Debug("Failed to load old ethash dataset", "err", err)
 
+		log.Info("IN generate at ethash.go 222")
 		// No previous dataset available, create a new dataset file to fill
 		cache := make([]uint32, csize/4)
 		generateCache(cache, d.epoch, seed)

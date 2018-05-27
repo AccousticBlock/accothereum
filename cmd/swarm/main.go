@@ -541,7 +541,7 @@ func getPassPhrase(prompt string, i int, passwords []string) string {
 }
 
 func injectBootnodes(srv *p2p.Server, nodes []string) {
-	log.Info("IN injectBootnodes at main.go", "nodes", nodes)
+	log.Info("IN injectBootnodes at main.go")
 	for _, url := range nodes {
 		n, err := discover.ParseNode(url)
 		if err != nil {
