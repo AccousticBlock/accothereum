@@ -231,7 +231,6 @@ func fnvHash(mix []uint32, data []uint32) {
 // generateDatasetItem combines data from 256 pseudorandomly selected cache nodes,
 // and hashes that to compute a single dataset node.
 func generateDatasetItem(cache []uint32, index uint32, keccak512 hasher) []byte {
-	log.Info("IN generateDatasetItem")
 	// Calculate the number of theoretical rows (we use one buffer nonetheless)
 	rows := uint32(len(cache) / hashWords)
 
